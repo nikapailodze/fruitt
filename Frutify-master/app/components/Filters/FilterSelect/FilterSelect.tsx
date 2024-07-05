@@ -21,13 +21,18 @@ type Values ={
 type Props={
   onChange?:(item:string)=>void
   values: Values[]
+
 }
-const FilterSelect = (props:Props) => {
+const FilterSelect = (props:any) => {
+
+  const onSelectChange=(e:any)=>{
+    props.onChange?.(e.target.value)
+  }
   return (
     <div className={styles.wrapper}>
       <div className={styles.selectWrapper}>
-        <select className={styles.customSelect}>
-          {props.values?.map(item=><option value={item.value}>{item.title}</option>)}
+        <select className={styles.customSelect} onChange={onSelectChange}>
+          {props.values?.map((item: Values)=><option value={item.value}>{item.title}</option>)}
         </select>
       </div>
     </div>
